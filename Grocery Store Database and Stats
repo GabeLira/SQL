@@ -1,6 +1,6 @@
 --Create a grocery store database
 
-CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, popularity INTEGER);
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, stock INTEGER);
 
 INSERT INTO store VALUES (1, "papaya", "produce", 2.99, 50);
 INSERT INTO store VALUES (2, "banana", "produce", 0.99, 95);
@@ -16,19 +16,20 @@ INSERT INTO store VALUES (11, "smoothie berries", "frozen", 2.99, 33);
 INSERT INTO store VALUES (12, "granola", "bulk", 1.99, 80);
 INSERT INTO store VALUES (13, "vitamin D", "health", 8.99,29);
 INSERT INTO store VALUES (14, "nutritional yeast", "health", 2.99, 26);
-INSERT INTO store VALUES (15, "popcorn", "snacks", 1.99, 47);
+INSERT INTO store VALUES (15, "Protien bars", "snacks", 1.99, 47);
+INSERT INTO store VALUES (16, "Beer","Alcohol", 16.99, 60);
+INSERT INTO store VALUES (17, "Wine","Alcohol", 18.99, 30);
 
---display the database ordered by price. 
+--display the database ordered by price showing the most expensive iteams first. 
 SELECT * FROM store
 ORDER BY price desc; 
 
 --what is the avg price of items in the bulk section? 
 SELECT AVG(price) "avg bulk item price"
 FROM store
-where section='bulk'; 
+where section='meat'; 
 
---what are the most 5 popular items? 
-SELECT item, price, popularity
-FROM store
-order by popularity desc
-limit 5; 
+--what items in the store have less than 50 in stock? 
+SELECT item, stock FROM store
+Where stock < 50
+ORDER BY stock
